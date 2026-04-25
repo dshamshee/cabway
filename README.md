@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cab Way
 
-## Getting Started
+Cab Way is an SEO-focused cab booking website built with Next.js App Router.
+Customers can browse services, view cab categories, and submit a booking request.
+Each booking is saved to MongoDB and emailed to the company inbox using Resend.
 
-First, run the development server:
+## Features
+
+- Landing page with service and fleet sections.
+- Booking form with required details and validation.
+- API endpoint to save bookings and send email notifications.
+- City-specific SEO pages under `/services/[city]`.
+- Technical SEO support with metadata, `sitemap.xml`, and `robots.txt`.
+
+## Required Environment Variables
+
+Create a `.env` file using `.env.example`:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Set the following values:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `MONGODB_URI` - MongoDB connection string.
+- `RESEND_API_KEY` - API key from Resend.
+- `COMPANY_BOOKING_EMAIL` - Email address that receives booking requests.
+- `MAIL_FROM` - Verified sender email/domain for Resend.
+- `NEXT_PUBLIC_APP_URL` - Public base URL (for metadata and sitemap).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Run Locally
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Build and Quality
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+npm run build
+```
 
-## Deploy on Vercel
+## Adding More SEO City Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+City pages are generated from `serviceCities` in `lib/cab-data.ts`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To add a city:
+1. Add the city slug to `serviceCities`.
+2. Add display name in `cityNames`.
+3. Rebuild/deploy to include the new static city route in sitemap.

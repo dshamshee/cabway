@@ -1,0 +1,25 @@
+I have a customer and he wants to build a platform where he runs their business online also. 
+
+He is a travel agent and provide cabs to the customer for traveling one place to another place in the city and out side of the city also. 
+
+He have multiple cab types like mini, sadan, SUV, etc 
+He wants to build a platform where the customer visits and know about the company and also check his serverces. and also can bale to book a cab as per need. 
+
+for booking a cab few details are must provided by the customers 
+
+1. Booking Type
+2. Vehicle Type
+3. Pickup location 
+4 Drop location 
+5. Travel Date 
+6. Pickup Time
+7. Name 
+8. Phone number 
+
+when customer submits then these details are received on companies email. 
+
+no wants to integrate online payment
+
+
+and show the some card about the cabs types and etc as needed. 
+and also make sure the platform must be SEO friendly so when customer serches Cab Way or something like related then the platform randed on google first 
