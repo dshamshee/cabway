@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { Star } from "lucide-react";
 
 import { sampleBookings } from "@/lib/cab-data";
 
@@ -14,9 +15,9 @@ export default function ExampleBookings() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.35, ease: "easeOut" }}
       >
-        <h2 className="font-heading text-3xl font-semibold tracking-tight">Example Booking Trips</h2>
+        <h2 className="font-heading text-3xl font-semibold tracking-tight">Customer Reviews</h2>
         <p className="mt-3 text-muted-foreground">
-          Sample rides with cab type, route details, trip distance, and estimated fare.
+          Real booking snapshots with route details and customer feedback.
         </p>
       </motion.div>
 
@@ -34,8 +35,16 @@ export default function ExampleBookings() {
               <Image src={booking.image} alt={`${booking.vehicleType} booking sample`} fill className="object-cover" />
             </div>
             <div className="space-y-2 p-5 text-sm">
-              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{booking.id}</p>
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{booking.id}</p>
+                <p className="inline-flex items-center gap-1 text-amber-500">
+                  {Array.from({ length: booking.rating }).map((_, idx) => (
+                    <Star key={`${booking.id}-${idx}`} className="h-3.5 w-3.5 fill-current" />
+                  ))}
+                </p>
+              </div>
               <h3 className="text-base font-semibold">{booking.customerName}</h3>
+              <p className="italic text-muted-foreground">&ldquo;{booking.review}&rdquo;</p>
               <p className="text-muted-foreground">
                 <span className="font-medium text-foreground">Route:</span> {booking.route}
               </p>

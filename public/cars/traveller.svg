@@ -1,0 +1,17 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#FFFBEB" />
+  <rect x="70" y="360" width="1060" height="245" rx="30" fill="#334155" />
+  <rect x="160" y="220" width="860" height="180" rx="34" fill="#475569" />
+  <rect x="208" y="252" width="130" height="92" rx="12" fill="#BFDBFE" />
+  <rect x="356" y="252" width="130" height="92" rx="12" fill="#BFDBFE" />
+  <rect x="504" y="252" width="130" height="92" rx="12" fill="#BFDBFE" />
+  <rect x="652" y="252" width="130" height="92" rx="12" fill="#BFDBFE" />
+  <rect x="800" y="252" width="172" height="92" rx="12" fill="#DBEAFE" />
+  <circle cx="288" cy="628" r="82" fill="#111827" />
+  <circle cx="288" cy="628" r="37" fill="#D1D5DB" />
+  <circle cx="894" cy="628" r="82" fill="#111827" />
+  <circle cx="894" cy="628" r="37" fill="#D1D5DB" />
+  <rect x="98" y="430" width="68" height="34" rx="8" fill="#F59E0B" />
+  <rect x="1034" y="430" width="68" height="34" rx="8" fill="#F59E0B" />
+  <text x="600" y="712" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" fill="#92400E">Tempo Traveller</text>
+</svg>

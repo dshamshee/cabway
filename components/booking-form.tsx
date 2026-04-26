@@ -24,8 +24,8 @@ type BookingFormValues = {
 };
 
 const defaultValues: BookingFormValues = {
-  bookingType: "city",
-  vehicleType: "mini",
+  bookingType: "outstation",
+  vehicleType: "sedan",
   pickupLocation: "",
   dropLocation: "",
   travelDate: "",
@@ -82,7 +82,7 @@ export default function BookingForm() {
         <CardHeader>
           <CardTitle className="font-heading text-2xl">Book Your Cab</CardTitle>
           <CardDescription>
-            Fill in your trip details and our team will confirm your ride by phone.
+            Fill in your details for one-way, round trip, or airport transfer booking.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -90,8 +90,8 @@ export default function BookingForm() {
             <div className="space-y-2">
               <Label htmlFor="bookingType">Booking Type</Label>
               <Select id="bookingType" {...register("bookingType")}>
-                <option value="city">City Ride</option>
-                <option value="outstation">Outstation</option>
+                <option value="outstation">One Way</option>
+                <option value="city">Round Trip</option>
                 <option value="airport">Airport Transfer</option>
               </Select>
             </div>
@@ -99,10 +99,10 @@ export default function BookingForm() {
             <div className="space-y-2">
               <Label htmlFor="vehicleType">Vehicle Type</Label>
               <Select id="vehicleType" {...register("vehicleType")}>
-                <option value="mini">Mini</option>
                 <option value="sedan">Sedan</option>
                 <option value="suv">SUV</option>
-                <option value="any">Any Available</option>
+                <option value="mini">Hatchback</option>
+                <option value="any">Any</option>
               </Select>
             </div>
 

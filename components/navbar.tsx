@@ -10,13 +10,44 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
 import { Button } from "./ui/button";
 
+type ThemeMode = "light" | "dark";
+
+const THEME_STORAGE_KEY = "theme";
+const THEME_CHANGE_EVENT = "cabway-theme-change";
+
+function getThemeSnapshot(): ThemeMode {
+  if (typeof window === "undefined") return "light";
+  const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+  if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+function getThemeServerSnapshot(): ThemeMode {
+  return "light";
+}
+
+function subscribeTheme(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  const onStorage = (event: StorageEvent) => {
+    if (!event.key || event.key === THEME_STORAGE_KEY) callback();
+  };
+  const onThemeChange = () => callback();
+
+  window.addEventListener("storage", onStorage);
+  window.addEventListener(THEME_CHANGE_EVENT, onThemeChange);
+
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener(THEME_CHANGE_EVENT, onThemeChange);
+  };
+}
+
 export default function NavigationBar() {
-  const { resolvedTheme, setTheme } = useTheme();
   const navItems = [
     {
       name: "Home",
@@ -49,7 +80,15 @@ export default function NavigationBar() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isDark = resolvedTheme === "dark";
+  const theme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getThemeServerSnapshot);
+  const isDark = theme === "dark";
+
+  const toggleTheme = () => {
+    const nextTheme = isDark ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", nextTheme === "dark");
+    window.localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
+  };
 
   return (
     <div className="relative w-full">
@@ -63,13 +102,11 @@ export default function NavigationBar() {
               type="button"
               size="icon"
               aria-label="Toggle theme"
-              onClick={() => setTheme(isDark ? "light" : "dark")}
-              className="inline-flex items-center justify-center rounded-full cursor-pointer  bg-background text-foreground transition hover:bg-accent"
+              onClick={toggleTheme}
+              className="inline-flex items-center justify-center rounded-full cursor-pointer bg-background text-foreground transition hover:bg-accent"
             >
               {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
             </Button>
-            {/* <NavbarButton variant="secondary">Login</NavbarButton> */}
-            {/* <NavbarButton variant="primary" href="#booking">Book a Cab</NavbarButton> */}
           </div>
         </NavBody>
 
@@ -101,13 +138,21 @@ export default function NavigationBar() {
               <button
                 type="button"
                 aria-label="Toggle theme"
-                onClick={() => setTheme(isDark ? "light" : "dark")}
+                onClick={toggleTheme}
                 className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-border bg-background text-sm font-medium text-foreground transition hover:bg-accent"
               >
-                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                {isDark ? "Light Mode" : "Dark Mode"}
+                {isDark ? (
+                  <>
+                    <Sun className="h-4 w-4" />
+                    Light Mode
+                  </>
+                ) : (
+                  <>
+                    <Moon className="h-4 w-4" />
+                    Dark Mode
+                  </>
+                )}
               </button>
-              
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant="primary"
