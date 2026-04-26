@@ -44,18 +44,54 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: process.env.MAIL_FROM,
       to: process.env.COMPANY_BOOKING_EMAIL,
-      subject: `New Cab Booking - ${validated.name}`,
+      subject: `New Booking Request | ${validated.name}`,
       html: `
-        <h2>New Booking Request</h2>
-        <p><strong>Booking Type:</strong> ${validated.bookingType}</p>
-        <p><strong>Vehicle Type:</strong> ${validated.vehicleType}</p>
-        <p><strong>Pickup Location:</strong> ${validated.pickupLocation}</p>
-        <p><strong>Drop Location:</strong> ${validated.dropLocation}</p>
-        <p><strong>Travel Date:</strong> ${validated.travelDate}</p>
-        <p><strong>Pickup Time:</strong> ${validated.pickupTime}</p>
-        <p><strong>Name:</strong> ${validated.name}</p>
-        <p><strong>Phone Number:</strong> ${validated.phoneNumber}</p>
-        <p><strong>Booking ID:</strong> ${booking._id}</p>
+        <div style="margin:0;padding:24px;background:#f3f4f6;font-family:Arial,sans-serif;color:#111827;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;">
+            <tr>
+              <td style="padding:20px 24px;background:#111827;color:#ffffff;">
+                <p style="margin:0;font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:0.9;">Cab Way Services</p>
+                <h1 style="margin:8px 0 0;font-size:22px;line-height:1.3;">New Booking Request Received</h1>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 24px;">
+                <p style="margin:0 0 14px;font-size:14px;color:#4b5563;">A customer has submitted a new booking request from the website.</p>
+                <p style="margin:0;display:inline-block;padding:6px 10px;border-radius:999px;background:#ecfdf5;color:#047857;font-size:12px;font-weight:700;text-transform:uppercase;">
+                  Action Needed: Confirm by Call
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 24px 16px;">
+                <h2 style="margin:0 0 10px;font-size:16px;color:#111827;">Trip Details</h2>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;width:38%;">Booking ID</td><td style="padding:10px 12px;font-size:13px;color:#111827;font-weight:600;">${booking._id}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Booking Type</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.bookingType}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Vehicle Type</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.vehicleType}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Pickup Location</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.pickupLocation}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Drop Location</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.dropLocation}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Travel Date</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.travelDate}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Pickup Time</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.pickupTime}</td></tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 24px 24px;">
+                <h2 style="margin:0 0 10px;font-size:16px;color:#111827;">Customer Details</h2>
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;width:38%;">Customer Name</td><td style="padding:10px 12px;font-size:13px;color:#111827;font-weight:600;">${validated.name}</td></tr>
+                  <tr><td style="padding:10px 12px;background:#f9fafb;font-size:13px;color:#6b7280;">Phone Number</td><td style="padding:10px 12px;font-size:13px;color:#111827;">${validated.phoneNumber}</td></tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 24px;background:#f9fafb;border-top:1px solid #e5e7eb;">
+                <p style="margin:0;font-size:12px;color:#6b7280;">This email was generated automatically from the Cab Way booking system.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
       `,
     });
 
