@@ -14,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: `${BASE_URL}/contact`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
   ];
 
   const cityPages: MetadataRoute.Sitemap = serviceCities.map((city) => ({

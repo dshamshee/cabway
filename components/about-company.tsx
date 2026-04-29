@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
 import { ShieldCheck, Clock3, CarFront } from "lucide-react";
 
 const highlights = [
@@ -24,12 +21,7 @@ const highlights = [
 export default function AboutCompany() {
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-4 py-16 md:px-6">
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.35, ease: "easeOut" }}
-      >
+      <div className="animate-in fade-in slide-in-from-bottom-3 duration-500">
         <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">About Company</p>
         <h2 className="mt-2 font-heading text-3xl font-semibold tracking-tight">About Cab Way Services</h2>
         <p className="mt-4 max-w-4xl text-muted-foreground">
@@ -37,22 +29,19 @@ export default function AboutCompany() {
           outstation trips. We combine transparent pricing, responsive support, and multiple cab options to make every
           ride easy to book and comfortable to complete.
         </p>
-      </motion.div>
+      </div>
 
       <div className="mt-8 grid gap-5 md:grid-cols-3">
         {highlights.map((item, index) => (
-          <motion.div
+          <div
             key={item.title}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.3, delay: index * 0.07, ease: "easeOut" }}
-            className="rounded-xl border border-border bg-card p-6"
+            className="animate-in fade-in slide-in-from-bottom-3 duration-500 rounded-xl border border-border bg-card p-6"
+            style={{ animationDelay: `${index * 70}ms` }}
           >
-            <item.icon className="h-5 w-5 text-primary" />
+            <item.icon className="h-5 w-5 text-primary" aria-hidden="true" />
             <h3 className="mt-3 text-lg font-semibold">{item.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

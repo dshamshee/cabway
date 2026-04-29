@@ -7,6 +7,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
+import Link from "next/link";
 
 import React, { useState } from "react";
 
@@ -241,18 +242,19 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
-      href="#"
+    <Link
+      href="/"
+      aria-label="Cab Way Services - Home"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30}
-      />
-      <span className="font-medium text-black dark:text-white">CabWay</span>
-    </a>
+      <span
+        aria-hidden="true"
+        className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-400 text-xs font-extrabold text-neutral-900"
+      >
+        CW
+      </span>
+      <span className="font-semibold text-black dark:text-white">Cab Way</span>
+    </Link>
   );
 };
 

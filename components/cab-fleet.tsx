@@ -1,7 +1,4 @@
- "use client";
-
 import Image from "next/image";
-import { motion } from "motion/react";
 
 import { cabTypes } from "@/lib/cab-data";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,19 +14,18 @@ export default function CabFleet() {
       </div>
       <div className="grid gap-6 md:grid-cols-3">
         {cabTypes.map((cab, index) => (
-          <motion.div
+          <div
             key={cab.slug}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.35, delay: index * 0.08, ease: "easeOut" }}
+            className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+            style={{ animationDelay: `${index * 80}ms` }}
           >
             <Card className="overflow-hidden border-border/70">
               <div className="relative h-52 w-full overflow-hidden bg-slate-100">
                 <Image
                   src={cab.image}
-                  alt={`${cab.title} cab`}
+                  alt={`${cab.title} cab available for booking with Cab Way - ${cab.bestFor.toLowerCase()}`}
                   fill
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="object-cover object-center transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
@@ -53,7 +49,7 @@ export default function CabFleet() {
                 </p>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

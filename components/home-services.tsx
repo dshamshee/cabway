@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const services = [
   {
     title: "City Ride",
@@ -23,17 +19,14 @@ export default function HomeServices() {
       <h2 className="font-heading text-3xl font-semibold tracking-tight">Our Services</h2>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
         {services.map((service, index) => (
-          <motion.div
+          <div
             key={service.title}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.3, delay: index * 0.07, ease: "easeOut" }}
-            className="rounded-xl border border-border p-6"
+            className="animate-in fade-in slide-in-from-bottom-3 duration-500 rounded-xl border border-border p-6"
+            style={{ animationDelay: `${index * 70}ms` }}
           >
             <h3 className="text-xl font-semibold">{service.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{service.description}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

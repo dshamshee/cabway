@@ -1,17 +1,25 @@
 export const serviceCities = [
-  "jaipur",
-  "delhi",
-  "gurgaon",
-  "noida",
+  "patna",
+  "siwan",
+  "gopalganj",
+  "muzaffarpur",
+  "darbhanga",
+  "gaya",
+  "motihari",
+  "hajipur",
 ] as const;
 
 export type ServiceCity = (typeof serviceCities)[number];
 
 export const cityNames: Record<ServiceCity, string> = {
-  jaipur: "Jaipur",
-  delhi: "Delhi",
-  gurgaon: "Gurgaon",
-  noida: "Noida",
+  patna: "Patna",
+  siwan: "Siwan",
+  gopalganj: "Gopalganj",
+  muzaffarpur: "Muzaffarpur",
+  darbhanga: "Darbhanga",
+  gaya: "Gaya",
+  motihari: "Motihari",
+  hajipur: "Hajipur",
 };
 
 export const cabTypes = [
@@ -119,5 +127,38 @@ export const sampleBookings = [
     image: "/cars/suv.jpeg",
     rating: 5,
     review: "Comfortable long-distance journey with transparent pricing and no surprises.",
+  },
+] as const;
+
+export const faqs = [
+  {
+    question: "How can I book a cab with Cab Way?",
+    answer:
+      "You can book a cab in three ways: fill the booking form on this site, call us on 9430856366, or email cabwayservices@gmail.com. Our team confirms every booking by phone before pickup.",
+  },
+  {
+    question: "Which cities and routes does Cab Way cover?",
+    answer:
+      "Cab Way operates across Bihar including Patna, Siwan, Gopalganj, Muzaffarpur, Darbhanga, Gaya, Motihari, and Hajipur, plus popular outstation routes such as Siwan to Patna, Patna to Gorakhpur, and Siwan to Delhi.",
+  },
+  {
+    question: "What types of cabs are available?",
+    answer:
+      "We offer Mini / Hatchback, Sedan, and SUV cabs. Choose based on your group size, luggage, and comfort preference. Mini cabs are ideal for city rides, Sedans for airport transfers, and SUVs for family or outstation travel.",
+  },
+  {
+    question: "Is the fare fixed or per kilometer?",
+    answer:
+      "Outstation trips are billed per kilometer with transparent starter fares (Mini from Rs 12/km, Sedan from Rs 15/km, SUV from Rs 19/km). Airport transfers and short city rides have fixed rates that we share before confirming the booking.",
+  },
+  {
+    question: "Do you offer 24/7 cab booking support?",
+    answer:
+      "Yes. Our booking team is reachable 24x7 for urgent rides, late-night airport pickups, and outstation trip requests.",
+  },
+  {
+    question: "How is payment collected for the ride?",
+    answer:
+      "Payment is collected after the ride. We accept cash, UPI, and bank transfer. There are no hidden charges beyond the fare confirmed during booking.",
   },
 ] as const;
